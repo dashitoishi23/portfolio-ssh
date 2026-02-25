@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-ssh",
+  "version": "1.0.0",
+  "description": "Interactive SSH-based portfolio",
+  "main": "src/cli.js",
+  "bin": {
+    "portfolio": "./bin/portfolio-shell"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["portfolio", "ssh", "cli"],
+  "author": "",
+  "license": "ISC"
+}

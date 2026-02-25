@@ -1,0 +1,30 @@
+Port 22
+Protocol 2
+
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+PermitRootLogin no
+PubkeyAuthentication no
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+AuthorizedKeysFile  none
+PermitEmptyPasswords no
+
+X11Forwarding no
+AllowTcpForwarding no
+AllowAgentForwarding no
+PermitTty yes
+
+ForceCommand /home/portfolio/portfolio/bin/portfolio-shell
+
+MaxStartups 10:30:100
+LoginGraceTime 30
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+PrintMotd no
+AcceptEnv LANG LC_*
+
+Subsystem sftp /usr/lib/ssh/sftp-server
