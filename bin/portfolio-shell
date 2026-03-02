@@ -1,3 +1,4 @@
-#!/bin/bash
-cd "$(dirname "$0")/../src"
-exec node cli.js
+#!/bin/sh
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+cd /home/portfolio-ss/src
+exec /usr/local/bin/node cli.js
