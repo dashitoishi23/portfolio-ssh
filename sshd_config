@@ -1,12 +1,22 @@
 Port 2222
 ListenAddress 0.0.0.0
 
+# Authentication - no auth required for portfolio visitors
 AuthenticationMethods none
 PermitEmptyPasswords yes
 PasswordAuthentication yes
 PubkeyAuthentication no
-PermitRootLogin yes
-StrictModes no
 
-LogLevel INFO
-SyslogFacility AUTH
+# Disable potentially dangerous features
+PermitRootLogin no
+StrictModes yes
+AllowTcpForwarding no
+X11Forwarding no
+AllowAgentForwarding no
+PrintMotd no
+PrintLastLog no
+AcceptEnv LANG LC_*
+# Force the portfolio shell - prevents users from getting actual shell access
+ForceCommand /home/portfolio-ss/bin/portfolio-shell
+# Restrict to minimal environment
+PermitUserEnvironment no
