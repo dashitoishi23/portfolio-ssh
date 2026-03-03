@@ -18,9 +18,9 @@ COPY . /home/portfolio-ss
 
 RUN chmod +x /home/portfolio-ss/bin/portfolio-shell
 
-RUN adduser -D -u ${UID} -G root -s /home/portfolio-ss/bin/portfolio-shell portfolio && \
+RUN adduser -D -u ${UID} -G users -s /home/portfolio-ss/bin/portfolio-shell portfolio && \
     passwd -d portfolio && \
-    chown -R portfolio:root /home/portfolio-ss/*
+    chown -R portfolio:users /home/portfolio-ss/*
 
 COPY sshd_config /etc/ssh/sshd_config
 
