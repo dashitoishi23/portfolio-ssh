@@ -1,24 +1,22 @@
 #!/usr/bin/env node
 
-const readline = require('readline');
-const fs = require('fs');
 const path = require('path');
 const keypress = require('keypress');
 const chalk = require('chalk');
 
 const SECTIONS = {
-  1: { name: 'About Me', file: 'about.txt' },
-  2: { name: 'Projects', file: 'projects.txt' },
-  3: { name: 'Work Experience', file: 'experience.txt' },
-  4: { name: 'Skills', file: 'skills.txt' },
-  5: { name: 'Contact', file: 'contact.txt' },
-  6: { name: 'Connect', file: 'connect.txt' },
+  1: { name: 'About Me', file: 'about.js' },
+  2: { name: 'Projects', file: 'projects.js' },
+  3: { name: 'Work Experience', file: 'experience.js' },
+  5: { name: 'Contact', file: 'contact.js' },
 };
 
 const c = new chalk.Chalk({ level: 3 });
 
 keypress(process.stdin);
 let menuIterator = 0;
+
+let isMenuVisible = true;
 
 process.stdin.on('keypress', (ch, key) => {
   if (key && key.ctrl && key.name === 'c') {
@@ -39,9 +37,11 @@ process.stdin.on('keypress', (ch, key) => {
   }
   if (key && key.name === 'return') {
     const selectedKey = Object.keys(SECTIONS)[menuIterator];
+    isMenuVisible = false;
     showSection(selectedKey);
   }
   if (key && key.name === 'escape') {
+      isMenuVisible = true;
       clearScreen();
       printHeader();
       printMenu();
@@ -73,25 +73,24 @@ function printMenu() {
     }
   });
 
-  console.log('\nUse arrow keys to navigate, Enter to select, and ESC to return to menu.\n');
+  console.log('\nUse arrow keys to navigate, Enter to select, ESC to return to menu, and Ctrl + C to say goodbye to me.\n');
 }
 
 function showSection(key) {
-  clearScreen();
   const section = SECTIONS[key];
   if (!section) {
-    console.log('\nInvalid option. Press Enter to continue...');
+    console.log('\nInvalid option. Press ESC to return to menu...');
     return;
   }
 
-  const contentPath = path.join(__dirname, 'content', section.file);
-  console.log('\n----------------------------------------');
-  console.log(`  ${section.name}`);
-  console.log('----------------------------------------\n');
-
-  if (fs.existsSync(contentPath)) {
-    console.log(fs.readFileSync(contentPath, 'utf8'));
-  } else {
+  try {
+    clearScreen();
+    const contentModule = require(path.join(__dirname, 'content', section.file));
+    console.log('\n----------------------------------------');
+    console.log(`  ${section.name}`);
+    console.log('----------------------------------------\n');
+    console.log(contentModule.getContent());
+  } catch (e) {
     console.log('Content coming soon.\n');
   }
   console.log('Press ESC to return to menu...\n');
