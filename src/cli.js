@@ -8,7 +8,7 @@ const SECTIONS = {
   1: { name: 'About Me', file: 'about.js' },
   2: { name: 'Projects', file: 'projects.js' },
   3: { name: 'Work Experience', file: 'experience.js' },
-  5: { name: 'Contact', file: 'contact.js' },
+  4: { name: 'Contact', file: 'contact.js' },
 };
 
 const c = new chalk.Chalk({ level: 3 });
