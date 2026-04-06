@@ -6,7 +6,9 @@ RUN apk add --no-cache \
     openssh-server \
     iptables
 
-RUN ssh-keygen -A
+COPY ssh_host_ed25519_key /etc/ssh/ssh_host_ed25519_key
+COPY ssh_host_ed25519_key.pub /etc/ssh/ssh_host_ed25519_key.pub
+RUN chmod 600 /etc/ssh/ssh_host_ed25519_key
 
 RUN mkdir -p /var/run/sshd
 

@@ -1,6 +1,8 @@
 Port 2222
 ListenAddress 0.0.0.0
 
+HostKey /etc/ssh/ssh_host_ed25519_key
+
 # Authentication - no auth required for portfolio visitors
 AuthenticationMethods none
 PermitEmptyPasswords yes
@@ -14,9 +16,9 @@ AllowTcpForwarding no
 X11Forwarding no
 AllowAgentForwarding no
 PrintMotd no
-PrintLastLog no
 AcceptEnv LANG LC_*
 # Force the portfolio shell - prevents users from getting actual shell access
 ForceCommand /home/portfolio-ss/bin/portfolio-shell
 # Restrict to minimal environment
 PermitUserEnvironment no
+PerSourcePenalty no
