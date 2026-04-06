@@ -21,4 +21,4 @@ AcceptEnv LANG LC_*
 ForceCommand /home/portfolio-ss/bin/portfolio-shell
 # Restrict to minimal environment
 PermitUserEnvironment no
-PerSourcePenalty no
+PerSourcePenalties no
